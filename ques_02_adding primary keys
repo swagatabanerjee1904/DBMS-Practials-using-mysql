@@ -1,0 +1,76 @@
+Question-2:
+Qu. (1) Create Table  Student  (SID varchar (20), Sname Varchar (30), Department varchar (30), Age int, GPA real) and Course (CID varchar (20), Cname Varchar (30), Strength int, Year int )with at least 5 entries
+SID and CID are the primary keys for respective tables
+Answer the following queries:
+1.	Find the name and department of those students who are older than 25 years and scored a GPA greater than 8.5
+2.	Find the course details which are either established in the year 1980 or which has strength less than 50
+Solution:
+mysql> create Table  Student  (SID varchar (20), Sname Varchar (30), Department varchar (30), Age int, GPA real);
+Query OK, 0 rows affected (0.02 sec)
+mysql> insert into Student values('MS101','Swagata','Mathematics',22,7.38);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into Student values('MS102','Git','Mathematics',22,8.24);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into Student values('MS103','Bidipta','Chemistry',26,8.6);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into Student values('MS104','Mithai','Physics',21,7.9);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into Student values('MS105','Radhika','Geology',27,9.1);
+Query OK, 1 row affected (0.00 sec)
+mysql> create table Course(CID varchar (20), Cname Varchar (30), Strength int, Year int );
+Query OK, 0 rows affected (0.02 sec)
+mysql> insert into course values('MCC101','ABC',50,1980);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into course values('MCC202','XYZ',45,1990);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into course values('MCC303','TUV',35,2000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into course values('MCC404','PQR',70,1988);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into course values('MCC505','LMN',56,2002);
+Query OK, 1 row affected (0.00 sec)
+mysql> alter table student add primary key(SID);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> alter table course add primary key(CID);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> select * from student;
++-------+---------+-------------+------+------+
+| SID   | Sname   | Department  | Age  | GPA  |
++-------+---------+-------------+------+------+
+| MS101 | Swagata | Mathematics |   22 | 7.38 |
+| MS102 | Git     | Mathematics |   22 | 8.24 |
+| MS103 | Bidipta | Chemistry   |   26 |  8.6 |
+| MS104 | Mithai  | Physics     |   21 |  7.9 |
+| MS105 | Radhika | Geology     |   27 |  9.1 |
++-------+---------+-------------+------+------+
+5 rows in set (0.00 sec)
+mysql> select * from Course;
++--------+-------+----------+------+
+| CID    | Cname | Strength | Year |
++--------+-------+----------+------+
+| MCC101 | ABC   |       50 | 1980 |
+| MCC202 | XYZ   |       45 | 1990 |
+| MCC303 | TUV   |       35 | 2000 |
+| MCC404 | PQR   |       70 | 1988 |
+| MCC505 | LMN   |       56 | 2002 |
++--------+-------+----------+------+
+5 rows in set (0.00 sec)
+mysql> select Sname,Department from Student where Age>25 and GPA>8.5;
++---------+------------+
+| Sname   | Department |
++---------+------------+
+| Bidipta | Chemistry  |
+| Radhika | Geology    |
++---------+------------+
+2 rows in set (0.00 sec)
+mysql> select * from Course where Strength<50 or Year=1980;
++--------+-------+----------+------+
+| CID    | Cname | Strength | Year |
++--------+-------+----------+------+
+| MCC101 | ABC   |       50 | 1980 |
+| MCC202 | XYZ   |       45 | 1990 |
+| MCC303 | TUV   |       35 | 2000 |
++--------+-------+----------+------+
+3 rows in set (0.00 sec)
